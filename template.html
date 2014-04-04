@@ -18,6 +18,7 @@
 <script src="js/libs/bootstrap.min.js"></script>
 
 <!-- Style CSS -->
+<link href="css/web.css" media="screen" rel="stylesheet">
 <link href="css/bootstrap.css" media="screen" rel="stylesheet">
 <link href="style.css" media="screen" rel="stylesheet">
 
@@ -40,11 +41,106 @@
 
 <body>
     <div class="body_wrap">
-        <div class="container">
+        <div class="row">
+            <aside class="sidebar col-sm-2">          
+            <!-- nav categories -->
+                <section class="widget-container widget-categories boxed boxed-turquoise">
+                    <h3 class="widget-title">Blog Categories</h3>
+                    <div class="inner">
+                        <ul>
+                            <li class="current-menu-item first"><a href="#" hidefocus="true" style="outline: none;"><i class="ico-cat ico-cat1"></i><span>Settings</span><span class="counter">1</span></a></li>
+                            
+                            <li><a href="#" hidefocus="true" style="outline: none;"><i class="ico-cat ico-cat2"></i><span>Notifications</span><span class="counter">3</span></a></li>
+                            
+                            <li><a href="#" hidefocus="true" style="outline: none;"><i class="ico-cat ico-cat3"></i><span>Photography</span><span class="counter">5</span></a></li>
+                            
+                            <li><a href="#" hidefocus="true" style="outline: none;"><i class="ico-cat ico-cat4"></i><span>Ringtones</span><span class="counter">4</span></a></li>
+                            
+                            <li><a href="#" hidefocus="true" style="outline: none;"><i class="ico-cat ico-cat5"></i><span>Finance</span><span class="counter">9</span></a></li>
+                            
+                            <li class="last"><a href="#" hidefocus="true" style="outline: none;"><i class="ico-cat ico-cat6"></i><span>Rating</span><span class="counter">8</span></a></li>
+                        </ul>
+                    </div>
+                </section>
 
-            Start your work here.
 
-        </div>
+                <!--  list categories -->
+                <div class="widget-container widget_recent_entries boxed margin-0">
+                        <h3 class="widget-title">My Lists <span class="glyphicon glyphicon-plus pull-right"></span></h3>
+                        <div class="inner">
+                            <ul>
+
+                                <li class="clearfix first">
+                                    <a href="#" class="post-title" hidefocus="true" style="outline: none;">List 1</a>
+                                </li>
+                                
+                                <li class="clearfix">                                
+                                    <a href="#" class="post-title" hidefocus="true" style="outline: none;">list 2</a>
+                                </li>
+                                
+                                <li class="clearfix last">
+                                    <a href="#" class="post-title" hidefocus="true" style="outline: none;">List 3</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+            </aside>
+    
+
+            <div class="content " role="main">
+            
+
+
+           
+                <div class="col-sm-9">
+
+                    <!-- tasks -->
+
+                    <div class="toggle title-red boxed">
+                        <div class="toggle-header">
+                            <a class="toggle-link collapsed" data-toggle="collapse" href="#toggle3" hidefocus="true" style="outline: none;">
+                                <span class="question"></span>
+                                <h5>Task 1</h5>
+                            </a>
+                        </div>
+
+                        <div id="toggle3" class="toggle-body collapse" style="height: 0px;">
+                        
+                            <div class="inner">
+                                <aside class="row">
+                                    
+                                    <section class="col-sm-4">
+                                        <p class="lead"><small>Due Date:</small> <em>MM/DD/YY</em></p>
+                                    </section>
+
+                                    <section class="col-sm-4">
+                                        <p class="lead"><a src="#"> 3300 University Blvd ... </a></p>
+                                    </section>
+
+                                     <section class="col-sm-4">
+                                        <p class="lead"><small>task in:</small> <em>List Name</em></p>
+                                    </section>
+
+                                </aside>
+
+                                    
+                                <article>
+                                    <!-- <p class="lead text-center">Additional Notes</p> -->
+                                    <p class="well">Lorem ipsum dolor sit amet, consecte tur adipiscing elit. Nullam in dui maurisiva mus hendrerit arcu sed erat mole stie vehi cula. Sed auctor neque eu tellus rhoncus eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere.</p>
+                                </article>
+                            
+                            </div>
+                        </div>
+                    </div> <!-- taks box -->
+
+
+
+                </div> <!-- col-sm-9 -->
+            </div>
+    </div>
+
         <!--/ container -->
     </div>
 </body>
