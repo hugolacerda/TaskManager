@@ -592,3 +592,23 @@ td.ui-datepicker-other-month span{color: #88361f;}
     text-shadow:0 1px 1px #fff;
     font-weight:bold;}
 
+/*-----------------------------------*/
+/* Login Form */
+/*-----------------------------------*/
+
+.widget_login .inner, .newsletterBox .inner, .widget_search .inner{padding: 40px 40px 0;}
+
+@media (min-width: 768px) and (max-width: 991px){
+    .widget_login .inner, .newsletterBox .inner, .widget_search .inner{padding: 20px 20px 0;}
+}
+
+.widget_login .field_text {float: none; width: auto; margin: 0 0 15px;}
+.widget_login .forget_password, .widget_login .rowRemember{display: none;}
+
+.widget_login .rowSubmit,
+.newsletterBox .rowSubmit,
+.widget_search .rowSubmit{
+    text-align: center;
+    padding-top: 18px;
+}
+
