@@ -9,6 +9,8 @@ return array(
 			'dsn'        => 'mysql:host=127.0.0.1;dbname=taskManager',
 			'username'   => 'root',
 			'password'   => 'root',
+
+			// hello world
 		),
 	),
 );
