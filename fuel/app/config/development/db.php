@@ -9,8 +9,8 @@ return array(
 			'dsn'        => 'mysql:host=127.0.0.1;dbname=taskManager',
 			'username'   => 'root',
 			'password'   => 'root',
-
-			// hello world
+			//$ oil generate user tasks title:string due:date location:text note:text taskList:string user_id:int
+			//oil generate admin posts title:string slug:string summary:text body:text user_id:int
 		),
 	),
 );
