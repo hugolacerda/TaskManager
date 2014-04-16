@@ -1,8 +1,16 @@
 <?php
-use Orm\Model;
 
-class Model_Task extends Model
-{
+class Model_Task extends \Orm\Model
+{,
+
+	// A post is created by one user
+	protected static $_belongs_to = array('user');
+
+	
+	// user can post multiple blogs
+	// protected static $_has_many = array('tasks');
+
+
 	protected static $_properties = array(
 		'id',
 		'title',

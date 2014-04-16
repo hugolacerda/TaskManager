@@ -1,10 +1,11 @@
 <?php
  
-    class Model_User extends \Orm\Model
+    class Model_Register extends \Orm\Model
     {
         protected static $_properties = array(
             'id',
             'username',
+            'email',
             'password',
             'group',
             'last_login',
@@ -28,8 +29,8 @@
         public static function register(Fieldset $form)
         {
         	$form->add('username', 'Username:')->add_rule('required');
-		    $form->add('password', 'Choose Password:', array('type'=>'password'))->add_rule('required');
-		    $form->add('password2', 'Re-type Password:', array('type' => 'password'))->add_rule('required');
+            $form->add('email2', 'Email:')->add_rule('required');
+		    $form->add('password2', 'Choose Password:', array('type'=>'password'))->add_rule('required');
 		    $form->add('submit', ' ', array('type'=>'submit', 'value' => 'Register'));
 		    return $form;
         }

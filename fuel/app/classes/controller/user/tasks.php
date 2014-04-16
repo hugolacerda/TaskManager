@@ -12,16 +12,22 @@ class Controller_Tasks extends Controller_User{
 	public function action_view($id = null)
 	{	
 		//Check to see if there's any Taks
-		is_null($id) and Response::redirect('tasks');
+		// is_null($id) and Response::redirect('tasks');
 
-		if ( ! $data['task'] = Model_Task::find($id))
-		{
-			Session::set_flash('error', 'Could not find task #'.$id);
-			Response::redirect('tasks');
-		}
+		// if ( ! $data['task'] = Model_Task::find($id))
+		// {
+		// 	Session::set_flash('error', 'Could not find task #'.$id);
+		// 	Response::redirect('tasks');
+		// }
 
-		$this->template->title = "Task";
-		$this->template->content = View::forge('user/tasks/view', $data);
+		// $this->template->title = "Task";
+		// $this->template->content = View::forge('tasks/view', $data);
+
+		$data['tasks'] = Model_Post::find($id);
+
+		$this->template->title = "Tasks";
+		$this->template->content = View::forge('user/tasks/index', $data);
+
 
 	}
 
@@ -133,22 +139,35 @@ class Controller_Tasks extends Controller_User{
 
 	public function action_delete($id = null)
 	{
-		is_null($id) and Response::redirect('user/tasks');
+		// is_null($id) and Response::redirect('tasks');
+
+		// if ($task = Model_Task::find($id))
+		// {
+		// 	$task->delete();
+
+		// 	Session::set_flash('success', 'Deleted task #'.$id);
+		// }
+
+		// else
+		// {
+		// 	Session::set_flash('error', 'Could not delete task #'.$id);
+		// }
+
+		// Response::redirect('tasks');
 
 		if ($task = Model_Task::find($id))
 		{
 			$task->delete();
 
-			Session::set_flash('success', 'Deleted task #'.$id);
+			Session::set_flash('success', e('Deleted task #'.$id));
 		}
 
 		else
 		{
-			Session::set_flash('error', 'Could not delete task #'.$id);
+			Session::set_flash('error', e('Could not delete task #'.$id));
 		}
 
 		Response::redirect('user/tasks');
-
 
 	}
 

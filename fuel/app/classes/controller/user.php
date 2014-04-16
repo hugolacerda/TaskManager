@@ -80,73 +80,81 @@ class Controller_User extends Controller_Base
 		
 		if (\Input::method() == 'POST')
 	    {
-	        $val->add('email', 'Email or Username')
+	    	$val->add('username', 'Username')
 			    ->add_rule('required');
-			$val->add('password', 'Password')
+	        $val->add('email2', 'Email or Username')
+			    ->add_rule('required');
+			$val->add('password2', 'Password')
 			    ->add_rule('required');
 
-			if ($val->run())
+			if (! $val->run())
 	        {
-	            try
-	            {
-	            	$auth = Auth::instance();
-	                // call Auth to create this user
-
-	            	if ($auth->create_user(Input::post('email2'), Input::post('password2')))
-					{
-						$created = Model\Auth::create_user(
-	                    $form->validated('email2'),
-	                    $form->validated('password2'),
-	                    Model\Config::get('application.user.default_group', 1),
-	                    array(
-	                        'fullname' => $form->validated('fullname'),
-	                    )
-	                );
-					}
-
-
-	                // if a user was created succesfully
-	                if ($created)
-	                {
-	                    // inform the user
-	                    \Messages::success(__('login.new-account-created'));
-
-	                    // and go back to the previous page, or show the
-	                    // application dashboard if we don't have any
-	                    \Response::redirect_back('dashboard');
-	                }
-	                else
-	                {
-	                    // oops, creating a new user failed?
-	                    \Messages::error(__('login.account-creation-failed'));
-	                }
-	            }
-
-	            // catch exceptions from the create_user() call
-	            catch (\SimpleUserUpdateException $e)
-	            {
-	                // duplicate email address
-	                if ($e->getCode() == 2)
-	                {
-	                    \Messages::error(__('login.email-already-exists'));
-	                }
-
-	                // duplicate username
-	                elseif ($e->getCode() == 3)
-	                {
-	                    \Messages::error(__('login.username-already-exists'));
-	                }
-
-	                // this can't happen, but you'll never know...
-	                else
-	                {
-	                    \Messages::error($e->getMessage());
-	                }
-	            }
+	        	$val->error();
+	        	redirect('user/login');
 	        }
+
+            try
+            {
+            	$auth = Auth::instance();
+                // call Auth to create this user
+
+      		 
+				
+				
+
+                // if a user was created succesfully
+                if ($auth->create_user($val->validated('email2'), $val->validated('password2'), $val->validated('email2')))
+                {
+                	
+                	$auth->login($val->validated('email2'), $val->validated('password2'));
+                 
+					if (Config::get('auth.driver', 'Simpleauth') == 'Ormauth')
+					{
+						$current_user = Model\Auth_User::find_by_username(Auth::get_screen_name());
+					}
+					else
+					{
+						$current_user = Model_User::find_by_username(Auth::get_screen_name());
+					}
+					Session::set_flash('success', ('Welcome, '.$current_user->username));
+					Response::redirect('user');
+
+
+                }
+                else
+                {
+                    // oops, creating a new user failed?
+                    // \Messages::error(__('login.account-creation-failed'));
+                    $this->template->set_global('login_error', 'Fail');
+                }
+            }
+
+            // catch exceptions from the create_user() call
+            catch (\SimpleUserUpdateException $e)
+            {
+            	throw $e;
+
+                // duplicate email address
+                if ($e->getCode() == 2)
+                {
+                    \Messages::error(__('login.email-already-exists'));
+                }
+
+                // duplicate username
+                elseif ($e->getCode() == 3)
+                {
+                    \Messages::error(__('login.username-already-exists'));
+                }
+
+                // this can't happen, but you'll never know...
+                else
+                {
+                    \Messages::error($e->getMessage());
+                }
+            }
+	       
 	    }
 
-	    var_dump($_POST);
 		$this->template->title = 'User Created';
 		$this->template->content = View::forge('user/dashboard', array('val' => $val), false);
 

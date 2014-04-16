@@ -47,14 +47,22 @@
 				<?php echo Form::hidden('destination',$_POST['destination']); ?>
 			<?php endif; ?>
 
-			
+			<div class="form-group <?php echo ! $val->error('username') ?: 'has-error' ?>">
+				<label for="username">Username:</label>
+				<?php echo Form::input('username', Input::post('username'), array('class' => 'form-control', 'placeholder' => 'username', 'autofocus')); ?>
+
+				<?php if ($val->error('username')): ?>
+					<span class="control-label"><?php echo $val->error('username')->get_message('You must provide a username'); ?></span>
+				<?php endif; ?>
+			</div>
+
 
 			<div class="form-group <?php echo ! $val->error('email2') ?: 'has-error' ?>">
 				<label for="email2">email2 or username:</label>
 				<?php echo Form::input('email2', Input::post('email2'), array('class' => 'form-control', 'placeholder' => 'email2 or username', 'autofocus')); ?>
 
 				<?php if ($val->error('email2')): ?>
-					<span class="control-label"><?php echo $val->error('email2')->get_message('You must provide a username or email2'); ?></sőan>
+					<span class="control-label"><?php echo $val->error('email2')->get_message('You must provide a username or email2'); ?></span>
 				<?php endif; ?>
 			</div>
 
