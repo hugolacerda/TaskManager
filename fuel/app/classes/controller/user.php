@@ -99,7 +99,7 @@ class Controller_User extends Controller_Base
                 // call Auth to create this user
 
       		 
-				
+				//oil generate user lists title:string task_id:int
 				
 
                 // if a user was created succesfully
@@ -124,7 +124,6 @@ class Controller_User extends Controller_Base
                 else
                 {
                     // oops, creating a new user failed?
-                    // \Messages::error(__('login.account-creation-failed'));
                     $this->template->set_global('login_error', 'Fail');
                 }
             }

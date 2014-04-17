@@ -1,5 +1,5 @@
 <?php
-class Controller_Tasks extends Controller_User{
+class Controller_Tasks extends Controller_Template{
 
 	public function action_index()
 	{
@@ -19,7 +19,7 @@ class Controller_Tasks extends Controller_User{
 			Session::set_flash('error', 'Could not find task #'.$id);
 			Response::redirect('tasks');
 		}
-
+		// $data['tasks'] = Model_Task::find($id);
 		$this->template->title = "Task";
 		$this->template->content = View::forge('user/tasks/view', $data);
 
@@ -35,7 +35,7 @@ class Controller_Tasks extends Controller_User{
 			$val = Model_Task::validate('create');
 			
 			if ($val->run())
-			{
+			{	
 				$task = Model_Task::forge(array(
 					'title' => Input::post('title'),
 					'due' => Input::post('due'),
@@ -63,7 +63,7 @@ class Controller_Tasks extends Controller_User{
 			}
 		}
 
-		$view->set_global('users', Arr::assoc_to_keyval(Model_User::find('all'), 'id', 'username'));
+		// $view->set_global('users', Arr::assoc_to_keyval(Model_User::find('all'), 'id', 'username'));
 		$this->template->title = "Tasks";
 		$this->template->content = $view;
 
@@ -72,20 +72,20 @@ class Controller_Tasks extends Controller_User{
 	public function action_edit($id = null)
 	{
 
-		$view = View::forge('user/tasks/edit');
+		// $view = View::forge('user/tasks/edit');
 
-		$task = Model_Task::find($id);
+		// $task = Model_Task::find($id);
+		is_null($id) and Response::redirect('tasks');
+
+		if ( ! $task = Model_Task::find($id))
+		{
+			Session::set_flash('error', 'Could not find task #'.$id);
+			Response::redirect('tasks');
+		}
+			
 		$val = Model_Task::validate('edit');
 
-		// is_null($id) and Response::redirect('tasks');
-
-		// if ( ! $task = Model_Task::find($id))
-		// {
-		// 	Session::set_flash('error', 'Could not find task #'.$id);
-		// 	Response::redirect('tasks');
-		// }
-
-		// $val = Model_Task::validate('edit');
+		
 
 		if ($val->run())
 		{
