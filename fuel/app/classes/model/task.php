@@ -8,7 +8,7 @@ class Model_Task extends \Orm\Model
 
 	
 	// user can post multiple blogs
-	// protected static $_has_many = array('tasks');
+	protected static $_has_many = array('lists');
 
 
 
@@ -18,7 +18,7 @@ class Model_Task extends \Orm\Model
 		'due',
 		'location',
 		'note',
-		'tasklist',
+		'list_id',
 		'user_id',
 		'created_at',
 		'updated_at',
@@ -42,8 +42,8 @@ class Model_Task extends \Orm\Model
 		$val->add_field('due', 'Due', 'required');
 		$val->add_field('location', 'Location', 'required');
 		$val->add_field('note', 'Note', 'required');
-		$val->add_field('tasklist', 'Tasklist', 'required|max_length[255]');
-		$val->add_field('user_id', 'User Id', 'required|valid_string[numeric]');
+		$val->add_field('list_id', 'Belongs to', 'required|valid_string[numeric]');
+		
 
 		return $val;
 	}

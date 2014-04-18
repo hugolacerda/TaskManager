@@ -13,7 +13,7 @@
 <?php foreach ($lists as $item): ?>		<tr>
 
 			<td><?php echo $item->title; ?></td>
-			<td><?php echo $item->task_id; ?></td>
+			
 			<td>
 				<!-- <div class="btn-toolbar">
 					<div class="btn-group">

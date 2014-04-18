@@ -8,8 +8,6 @@ class Model_User extends \Orm\Model
 	protected static $_belongs_to = array('user');
 	
 	
-
-
 	// protected static $_primary_key = array('id'); 
 
 	protected static $_properties = array(

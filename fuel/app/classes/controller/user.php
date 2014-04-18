@@ -8,7 +8,7 @@ class Controller_User extends Controller_Base
 	{
 		parent::before();
 
-		if (Request::active()->controller !== 'Controller_user' or ! in_array(Request::active()->action, array('login', 'logout')))
+		if (Request::active()->controller !== 'Controller_User' or ! in_array(Request::active()->action, array('login', 'logout')))
 		{
 			if (Auth::check())
 			{
@@ -16,12 +16,12 @@ class Controller_User extends Controller_Base
 				if ( ! Auth::member($user_group_id))
 				{
 					Session::set_flash('error', e('You don\'t have access to the user panel'));
-					// Response::redirect('/');
+					Response::redirect('/');
 				}
 			}
 			else
 			{
-				// Response::redirect('user/login');
+				Response::redirect('user/login');
 				// echo "this is the user";
 			}
 		}

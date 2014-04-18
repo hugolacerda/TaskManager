@@ -1,9 +1,14 @@
 <?php
 class Controller_Lists extends Controller_Base{
 
+
+
 	public function action_index()
 	{
-		$data['lists'] = Model_List::find('all');
+		var_dump($this->current_user->id);
+		$data['lists'] = Model_List::find_all_by_user_id($this->current_user->id);
+
+		// $data['lists'] = Model_List::find('all');
 		//List and Tasks on the same page
 		$this->template->title = "Lists";
 		$this->template->content = View::forge('lists/index', $data);
@@ -37,7 +42,7 @@ class Controller_Lists extends Controller_Base{
 			{
 				$list = Model_List::forge(array(
 					'title' => Input::post('title'),
-					'task_id' => Input::post('task_id'),
+					'user_id' => $this->current_user->id,
 				));
 
 				if ($list and $list->save())
@@ -57,7 +62,7 @@ class Controller_Lists extends Controller_Base{
 				Session::set_flash('error', $val->error());
 			}
 		}
-		$view->set_global('tasks', Arr::assoc_to_keyval(Model_Task::find('all'), 'id', 'title'));
+		$view->set_global('list', Arr::assoc_to_keyval(Model_List::find('all'), 'id', 'title'));
 		$this->template->title = "Lists";
 		$this->template->content = View::forge('lists/create');
 
@@ -82,7 +87,7 @@ class Controller_Lists extends Controller_Base{
 		if ($val->run())
 		{
 			$list->title = Input::post('title');
-			$list->task_id = Input::post('task_id');
+			$list->user_id = $this->current_user->id;
 
 			if ($list->save())
 			{
@@ -102,7 +107,7 @@ class Controller_Lists extends Controller_Base{
 			if (Input::method() == 'POST')
 			{
 				$list->title = $val->validated('title');
-				$list->task_id = $val->validated('task_id');
+				$list->user_id = $this->current_user->id;
 
 				Session::set_flash('error', $val->error());
 			}

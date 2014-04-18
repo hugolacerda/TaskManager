@@ -3,7 +3,7 @@ class Controller_Tasks extends Controller_Template{
 
 	public function action_index()
 	{
-		$data['tasks'] = Model_Task::find('all');
+		$data['tasks'] = Model_Task::find_all_by_user_id($this->current_user->id);
 		$this->template->title = "Tasks";
 		$this->template->content = View::forge('user/tasks/index', $data);
 
@@ -41,7 +41,7 @@ class Controller_Tasks extends Controller_Template{
 					'due' => Input::post('due'),
 					'location' => Input::post('location'),
 					'note' => Input::post('note'),
-					'tasklist' => Input::post('tasklist'),
+					'list_id' => Input::post('list_id'),
 					'user_id' => Input::post('user_id'),
 				));
 
@@ -63,7 +63,7 @@ class Controller_Tasks extends Controller_Template{
 			}
 		}
 
-		// $view->set_global('users', Arr::assoc_to_keyval(Model_User::find('all'), 'id', 'username'));
+		// $view->set_global('task', Arr::assoc_to_keyval(Model_Task::find('all'), 'id', 'username'));
 		$this->template->title = "Tasks";
 		$this->template->content = $view;
 
@@ -93,7 +93,7 @@ class Controller_Tasks extends Controller_Template{
 			$task->due = Input::post('due');
 			$task->location = Input::post('location');
 			$task->note = Input::post('note');
-			$task->tasklist = Input::post('tasklist');
+			$task->list_id = Input::post('list_id');
 			$task->user_id = Input::post('user_id');
 
 			if ($task->save())
@@ -117,7 +117,7 @@ class Controller_Tasks extends Controller_Template{
 				$task->due = $val->validated('due');
 				$task->location = $val->validated('location');
 				$task->note = $val->validated('note');
-				$task->tasklist = $val->validated('tasklist');
+				$task->list_id = $val->validated('list_id');
 				$task->user_id = $val->validated('user_id');
 
 				Session::set_flash('error', $val->error());

@@ -30,6 +30,16 @@
 
 				<?php echo Form::input('tasklist', Input::post('tasklist', isset($task) ? $task->tasklist : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Tasklist')); ?>
 
+			<div class="clearfix">
+			    <?php echo Form::label('Belongs to', 'list_id', array('class'=>'control-label')); ?>
+			 
+			    <div class="input">
+			
+			    <?php echo Form::select('list_id', Input::post('list_id', isset($task) ? $task->list_id : $list->id), $list, array('class' => 'span6')); ?>
+		    </div>
+
+		</div>
+
 		</div>
 		<div class="form-group">
 			<?php echo Form::label('User id', 'user_id', array('class'=>'control-label')); ?>
@@ -39,6 +49,7 @@
 		</div>
 		<div class="form-group">
 			<label class='control-label'>&nbsp;</label>
-			<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>		</div>
+			<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>		
+		</div>
 	</fieldset>
 <?php echo Form::close(); ?>
