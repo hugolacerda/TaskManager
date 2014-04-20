@@ -16,7 +16,7 @@ class Controller_User extends Controller_Base
 				if ( ! Auth::member($user_group_id))
 				{
 					Session::set_flash('error', e('You don\'t have access to the user panel'));
-					Response::redirect('/');
+					// Response::redirect('/');
 				}
 			}
 			else

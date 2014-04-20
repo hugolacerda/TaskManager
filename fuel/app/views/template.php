@@ -23,10 +23,10 @@
 <script src="js/libs/bootstrap.min.js"></script>
 
 <!-- Style CSS -->
-<link href="css/web.css" media="screen" rel="stylesheet">
+<!-- <link href="css/web.css" media="screen" rel="stylesheet">
 <link href="css/bootstrap.css" media="screen" rel="stylesheet">
 <link href="style.css" media="screen" rel="stylesheet">
-
+ -->
 <!-- scripts -->
 <script src="js/general.js"></script>
 

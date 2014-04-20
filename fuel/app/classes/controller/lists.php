@@ -5,7 +5,7 @@ class Controller_Lists extends Controller_Base{
 
 	public function action_index()
 	{
-		var_dump($this->current_user->id);
+		
 		$data['lists'] = Model_List::find_all_by_user_id($this->current_user->id);
 
 		// $data['lists'] = Model_List::find('all');

@@ -26,7 +26,7 @@ class Controller_Tasks extends Controller_User{
 		$data['tasks'] = Model_Post::find($id);
 
 		$this->template->title = "Tasks";
-		$this->template->content = View::forge('user/tasks/index', $data);
+		$this->template->content = View::forge('tasks/index', $data);
 
 
 	}
@@ -34,7 +34,7 @@ class Controller_Tasks extends Controller_User{
 	public function action_create()
 	{
 
-		$view = View::forge('user/tasks/create');
+		$view = View::forge('tasks/create');
 
 		if (Input::method() == 'POST')
 		{
@@ -78,7 +78,7 @@ class Controller_Tasks extends Controller_User{
 	public function action_edit($id = null)
 	{
 
-		$view = View::forge('user/tasks/edit');
+		$view = View::forge('tasks/edit');
 
 		$task = Model_Task::find($id);
 		$val = Model_Task::validate('edit');
